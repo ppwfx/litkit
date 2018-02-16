@@ -58,7 +58,7 @@ def cache(ignore=[]):
     return deco
 
 
-def info(df: pd.DataFrame, is_numeric_array=None):
+def info(df: pd.DataFrame):
     stats = {
         'column': [],
         'type': [],
