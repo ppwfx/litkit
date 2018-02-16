@@ -10,6 +10,8 @@ from litkit.src import utils, cache as ca
 import pandas as pd
 import numpy as np
 
+from litkit.src.df import vis
+
 
 pd.set_option('display.height', 1000)
 pd.set_option('display.max_rows', 500)
