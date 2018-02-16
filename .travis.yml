@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.6"
+
+script: sleep 0
+install: sleep 0
+
+all_branches: true
+tags: true
+
+deploy:
+  provider: pypi
+  user: 21stio
+  password:
+    secure: QiljHx8yUGaxpnpFXTH0Qt+xiL1iD77q8Z0aVL7pJUAZ9qHSh9QbMmubyYaafoFp1e/JY737MXDmJGV1KfoWZNlgcSeGMqVrzxP+ItPQ1AqHqiS5UchHIGQVnOhisV/91Rn9ZveK9kcqmFO3paRup/OZjL+OtlC+yg0HGyoPYbf+MWinEswo5suHzmCAMLYmwSnyC7YAs/6nBcakp+zrvOR/lO49LaQCKC14h6SsrTYmtq+g3fxVfGXDo6UeE/Jdrv7PtbSLMbo3ntRNYfmgRej4Rq9n/lnHwXA6CkXa8er2Gv+tdEK5ASmjISFsi9A1AnW+oB6FpTcKCjIxgHq7BrpP2l2JvfCSGZQHXbscL93ogVBACpEAFgEGoca4yH4+IgU3Jgo7x0Xvz5ybYTvF7T0zQSY03SUPg3yf8PDtPTO0agu9nYN8ziJzyHAsp/BngGBrolc0GjceSjL/KFtooAxFnLMs7m7OaEE+aAwAO8I1cSUOluLyQQwG7BXC9rHZ8vbd6RlmrylNtWK58PPZ+NNQLqcjfwBWSX+yZupGbaXVYmujOWQO1ie14QNQfAaDykQJhFVbQRM+mdLUTCktMnTxOiMOqC0cEoxfDAHYivJwmqUtxXj2GsnRMNN9bkzD1GkoYbM0V4T58CfpXgxthLaFg1EWGqau0tWCQGI4Jm8=

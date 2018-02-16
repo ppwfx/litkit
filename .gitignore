@@ -1,0 +1,11 @@
+.idea/
+.DS_Store
+bin/
+include/
+lib/
+pyvenv.cfg
+pip-selfcheck.json
+.pypirc
+sdist/
+.pytest_cache/
+MANIFEST
