@@ -1,9 +1,11 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 import pandas as pd
+from sklearn.preprocessing import Imputer as sk_Imputer
 
 from litkit.src.df import info
 
 
+# todo: inject full distribution, otherwise the cv folds won"t contain all possible categories
 class OneHotEncoder(BaseEstimator, TransformerMixin):
     def __init__(self, columns=None, dummy_na=None):
         self.columns = columns
@@ -18,6 +20,40 @@ class OneHotEncoder(BaseEstimator, TransformerMixin):
             del X[c]
 
         return X
+
+
+class Imputer(BaseEstimator, TransformerMixin):
+    def __init__(self, strategy=None):
+        self.strategy = strategy
+        self.imputer = None
+
+    def fit(self, X, y=None):
+        if self.strategy == '0':
+            return self
+
+        self.imputer = sk_Imputer(strategy=self.strategy)
+        self.imputer.fit(X, y)
+
+        return self
+
+    def transform(self, X):
+        if self.strategy == '0':
+            return X.fillna(value=0)
+
+        d = self.imputer.transform(X)
+
+        return pd.DataFrame(d, index=X.index, columns=X.columns)
+
+
+class Keeper(BaseEstimator, TransformerMixin):
+    def __init__(self, columns=None):
+        self.columns = columns
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        return X[self.columns]
 
 
 class Info(BaseEstimator, TransformerMixin):

@@ -13,3 +13,9 @@ def get_baseball_df():
     df = df.replace(['?'], [np.nan])
 
     return df
+
+
+def get_cv_results_df():
+    df = pd.read_csv(d + '/cv_results.csv')
+
+    return df
