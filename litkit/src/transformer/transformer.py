@@ -64,3 +64,19 @@ class Info(BaseEstimator, TransformerMixin):
         info(X)
 
         return X
+
+
+class ScopedTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, transformer=None, columns=None):
+        self.transformer = transformer
+        self.columns = columns
+
+    def fit(self, X, y=None):
+        self.transformer.fit(X[self.columns], y)
+
+        return self
+
+    def transform(self, X):
+        X[self.columns] = self.transformer.transform(X[self.columns])
+
+        return X
