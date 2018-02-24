@@ -5,12 +5,6 @@ import os
 from filelock import FileLock
 
 from litkit import utils, cache as ca
-import pandas as pd
-
-pd.set_option('display.height', 1000)
-pd.set_option('display.max_rows', 500)
-pd.set_option('display.max_columns', 500)
-pd.set_option('display.width', 1000)
 
 
 def cache(ignore=[]):
