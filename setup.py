@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='litkit',
     packages=['litkit'],
-    version='0.0.8',
+    version='0.0.9',
     description='data analysis convenience package',
     author='Philipp Woerdehoff',
     author_email='ph.woerdehoff@gmail.com',
