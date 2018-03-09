@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 from beeprint import pp
 from sklearn.base import BaseEstimator
+from keras.preprocessing import image
+from jinja2 import Template
+
+from litkit.utils import open_file
 
 
 pd.set_option('display.height', 1000)
@@ -9,6 +13,39 @@ pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
+
+def show_images(img_arrays):
+    img_paths = []
+    for i in range(len(img_arrays)):
+        img = image.array_to_img(img_arrays[i])
+
+        p = '/tmp/abc/img_{}.jpeg'.format(i)
+
+        img.save(p)
+
+        img_paths.append(p)
+
+    tpl = """
+    <html>
+        <head>
+        </head>
+        <body>
+        {% for path in image_paths %}
+            <div style="float: left;">
+            <p>{{loop.index - 1}}</p>    
+            <img src="file://{{path}}"/>
+            </div>    
+        {% endfor %}
+        </body>
+    </html>
+    """
+    template = Template(tpl)
+    html = template.render(image_paths=img_paths)
+
+    with open("/tmp/abc/imgs.html", 'w') as f:
+        f.write(html)
+
+    open_file('/tmp/abc/imgs.html')
 
 def info(obj: pd.DataFrame):
     if isinstance(obj, np.ndarray):

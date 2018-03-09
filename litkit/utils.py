@@ -1,7 +1,9 @@
 import inspect
 from typing import List
 
+import os
 import pandas as pd
+import subprocess
 
 
 def get_args(fn, args, kwargs, ignore: List) -> List:
@@ -78,3 +80,12 @@ def get_arg(fn, args, kwargs, arg: str):
     args = get_args(fn, args, kwargs, [])
 
     return list(filter(lambda a: a[0] == arg, args))[0][1]
+
+
+
+def open_file(filename):
+    '''Open document with default application in Python.'''
+    try:
+        os.startfile(filename)
+    except AttributeError:
+        subprocess.call(['open', filename])
