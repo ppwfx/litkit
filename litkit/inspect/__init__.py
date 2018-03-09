@@ -1,11 +1,36 @@
 import pandas as pd
 import numpy as np
 from beeprint import pp
+from sklearn.base import BaseEstimator
+
 
 pd.set_option('display.height', 1000)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
+
+
+def info(obj: pd.DataFrame):
+    if isinstance(obj, np.ndarray):
+        __np_info(obj)
+        df = pd.DataFrame(obj)
+
+        __df_info(df)
+
+    if isinstance(obj, pd.DataFrame):
+        df = pd.DataFrame(obj)
+
+        __df_info(df)
+
+    if isinstance(obj, BaseEstimator):
+        if hasattr(obj, "coef_"):
+            pp(obj.coef_)
+
+        if hasattr(obj, "feature_importances_"):
+            pp(obj.coef_)
+
+        pp(obj.__dict__)
+
 
 def __np_info(arr: np.ndarray):
     print('ndim:     {}'.format(arr.ndim))
@@ -15,11 +40,7 @@ def __np_info(arr: np.ndarray):
     print('itemsize: {}'.format(arr.itemsize))
 
 
-def info(df: pd.DataFrame):
-    if isinstance(df, np.ndarray):
-        __np_info(df)
-        df = pd.DataFrame(df)
-
+def __df_info(df):
     stats = {
         'column': [],
         'type': [],
