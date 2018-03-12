@@ -4,6 +4,7 @@ from typing import List
 import os
 import pandas as pd
 import subprocess
+from pandas.util import hash_pandas_object
 
 
 def get_args(fn, args, kwargs, ignore: List) -> List:
@@ -51,11 +52,7 @@ def serialize_call(fn, args, kwargs, ignore: List) -> str:
             continue
 
         if isinstance(p[1], pd.DataFrame):
-            vs = p[1].values
-
-            s = ''
-            for v in vs:
-                s += str(max(v)) + str(min(v))
+            s = str(hash_pandas_object(p[1]).sum())
 
             serialized += str(p[0]) + ":" + s + " " + ','.join(list(p[1].columns))
 
